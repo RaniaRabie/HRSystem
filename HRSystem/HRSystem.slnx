@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="HRSystem.BLL/HRSystem.BLL.csproj" />
+  <Project Path="HRSystem.DAL/HRSystem.DAL.csproj" />
+  <Project Path="HRSystem.MVC/HRSystem.MVC.csproj" />
+</Solution>
