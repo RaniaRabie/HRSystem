@@ -1,0 +1,101 @@
+﻿@using HRSystem.DAL.Enums
+@model IEnumerable<HRSystem.BLL.ModelVM.LeaveRequest.LeaveRequestVM>
+
+
+@{
+    ViewData["Title"] = "My Leave Requests";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success border-0 rounded-3 py-2 small">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger border-0 rounded-3 py-2 small">
+        <i class="bi bi-exclamation-circle me-2"></i>@TempData["Error"]
+    </div>
+}
+
+<div class="card">
+    <div class="card-header bg-white border-0 py-3 px-4
+        d-flex justify-content-between align-items-center">
+        <span class="fw-semibold" style="font-size:14px;">My Leave Requests</span>
+        <a asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-lg me-1"></i> New Request
+        </a>
+    </div>
+
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Days</th>
+                    <th>Status</th>
+                    <th>Note</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            No requests yet
+                        </td>
+                    </tr>
+                }
+
+                @foreach (var r in Model)
+                {
+                    <tr>
+                        <td class="fw-medium">@r.LeaveTypeName</td>
+                        <td>@r.FromDate.ToString("dd MMM yyyy")</td>
+                        <td>@r.ToDate.ToString("dd MMM yyyy")</td>
+                        <td>@r.TotalDays</td>
+                        <td>
+                            @switch (r.Status)
+                            {
+                                case LeaveStatus.Pending:
+                                    <span class="badge bg-warning bg-opacity-25
+                                    text-warning fw-normal">Pending</span>
+                                    break;
+                                case LeaveStatus.Approved:
+                                    <span class="badge-active">Approved</span>
+                                    break;
+                                case LeaveStatus.Rejected:
+                                    <span class="badge bg-danger bg-opacity-25
+                                    text-danger fw-normal">Rejected</span>
+                                    break;
+                                case LeaveStatus.Cancelled:
+                                    <span class="badge-inactive">Cancelled</span>
+                                    break;
+                            }
+                        </td>
+                        <td class="text-muted" style="font-size:12px;">
+                            @(r.ApproverNote ?? "—")
+                        </td>
+                        <td class="text-end pe-4">
+                            @if (r.Status == LeaveStatus.Pending)
+                            {
+                                <form asp-action="Cancel" asp-route-id="@r.Id"
+                                      method="post" class="d-inline"
+                                      onsubmit="return confirm('Cancel this request?')">
+                                    @Html.AntiForgeryToken()
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-x-lg"></i> Cancel
+                                    </button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

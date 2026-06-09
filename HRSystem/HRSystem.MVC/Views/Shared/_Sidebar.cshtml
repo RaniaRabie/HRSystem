@@ -1,0 +1,100 @@
+﻿@using System.Security.Claims
+
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var userName = User.Identity?.Name ?? "";
+    var initial = userName.Length > 0 ? userName[0].ToString().ToUpper() : "?";
+    var role = new[] { "Admin", "HR", "Employee" }
+                         .FirstOrDefault(r => User.IsInRole(r)) ?? "";
+}
+
+<div class="sidebar">
+
+    <div class="sidebar-logo">
+        <div class="logo-icon"><i class="bi bi-people-fill"></i></div>
+        HR System
+    </div>
+
+    <nav class="mt-1">
+        <div class="sidebar-section-label">Main</div>
+
+        <a asp-controller="Dashboard" asp-action="Index"
+           class="sidebar-item @(controller == "Dashboard" ? "active" : "")">
+            <i class="bi bi-grid-1x2"></i>
+            Dashboard
+        </a>
+
+        @if (User.IsInRole("Admin") || User.IsInRole("HR"))
+        {
+            <div class="sidebar-section-label">Management</div>
+
+            <a asp-controller="Employee" asp-action="Index"
+               class="sidebar-item @(controller == "Employee" ? "active" : "")">
+                <i class="bi bi-people"></i>
+                Employees
+            </a>
+
+            <a asp-controller="Department" asp-action="Index"
+               class="sidebar-item @(controller == "Department" ? "active" : "")">
+                <i class="bi bi-building"></i>
+                Departments
+            </a>
+
+            <a asp-controller="Position" asp-action="Index"
+               class="sidebar-item @(controller == "Position" ? "active" : "")">
+                <i class="bi bi-briefcase"></i>
+                Positions
+            </a>
+
+            <a asp-controller="LeaveType" asp-action="Index"
+               class="sidebar-item @(controller == "LeaveType" ? "active" : "")">
+                <i class="bi bi-calendar2-check"></i> Leave Types
+            </a>
+
+            <!-- Pending approvals — HR/Admin + Supervisors -->
+            <div class="sidebar-section-label">Approvals</div>
+            <a asp-controller="LeaveRequest" asp-action="PendingApprovals"
+               class="sidebar-item @(controller == "LeaveRequest"
+                                           && ViewContext.RouteData.Values["action"]?.ToString()
+                                           == "PendingApprovals" ? "active" : "")">
+                <i class="bi bi-hourglass-split"></i> Pending Approvals
+            </a>
+        }
+
+        @if (User.IsInRole("Employee"))
+        {
+            <div class="sidebar-section-label">Leave</div>
+            <a asp-controller="LeaveRequest" asp-action="MyRequests"
+               class="sidebar-item @(controller == "LeaveRequest" ? "active" : "")">
+                <i class="bi bi-calendar2-week"></i> My Requests
+            </a>
+
+            <a asp-controller="LeaveRequest" asp-action="PendingApprovals"
+               class="sidebar-item @(controller == "LeaveRequest"
+                                           && ViewContext.RouteData.Values["action"]?.ToString()
+                                           == "PendingApprovals" ? "active" : "")">
+                <i class="bi bi-hourglass-split"></i> Pending Approvals
+            </a>
+        }
+    </nav>
+
+
+
+    <div class="sidebar-bottom">
+        <div class="sidebar-user">
+            <div class="sidebar-avatar">@initial</div>
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-name">@userName</div>
+                <div class="sidebar-user-role">@role</div>
+            </div>
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-link p-0"
+                        title="Logout">
+                    <i class="bi bi-box-arrow-right text-white opacity-50 fs-5"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>

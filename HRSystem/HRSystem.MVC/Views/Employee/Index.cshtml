@@ -1,0 +1,135 @@
+﻿@model IEnumerable<HRSystem.BLL.ModelVM.Employee.EmployeeVM>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success border-0 rounded-3 py-2 small">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger border-0 rounded-3 py-2 small">
+        <i class="bi bi-exclamation-circle me-2"></i>@TempData["Error"]
+    </div>
+}
+
+<div class="card">
+    <div class="card-header bg-white border-0 py-3 px-4
+        d-flex justify-content-between align-items-center">
+        <span class="fw-semibold" style="font-size:14px;">
+            All Employees
+            <span class="badge bg-primary bg-opacity-10 text-primary ms-2 fw-normal">
+                @Model.Count()
+            </span>
+        </span>
+        <a asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-lg me-1"></i> Add Employee
+        </a>
+    </div>
+
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Hire Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            No employees yet
+                        </td>
+                    </tr>
+                }
+
+                @foreach (var emp in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div style="width:32px;height:32px;border-radius:50%;
+                                    background:#4f7bff;color:#fff;
+                                    display:flex;align-items:center;
+                                    justify-content:center;
+                                    font-size:12px;font-weight:600;
+                                    flex-shrink:0;">
+                                    @emp.FullName[0]
+                                </div>
+                                <div>
+                                    <div class="fw-medium" style="font-size:13px;">
+                                        @emp.FullName
+                                    </div>
+                                    <div class="text-muted" style="font-size:11px;">
+                                        @emp.Email
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>@emp.PositionName</td>
+                        <td>
+                            <span class="badge bg-primary bg-opacity-10
+                                text-primary fw-normal">
+                                @emp.DepartmentName
+                            </span>
+                        </td>
+                        <td class="text-muted">
+                            @emp.HireDate.ToString("dd MMM yyyy")
+                        </td>
+                        <td>
+                            @if (emp.IsActive)
+                            {
+                                <span class="badge-active">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge-inactive">Inactive</span>
+                            }
+                        </td>
+                        <td class="text-end pe-4">
+                            <a asp-action="Edit" asp-route-id="@emp.Id"
+                               class="btn btn-outline-primary btn-sm me-1">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+
+                            @if (emp.IsActive)
+                            {
+                                <form asp-action="Deactivate" asp-route-id="@emp.Id"
+                                      method="post" class="d-inline"
+                                      onsubmit="return confirm('Deactivate @emp.FullName?')">
+                                    @Html.AntiForgeryToken()
+                                    <button class="btn btn-outline-danger btn-sm"
+                                            title="Deactivate">
+                                        <i class="bi bi-person-x"></i>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-action="Activate" asp-route-id="@emp.Id"
+                                      method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button class="btn btn-outline-success btn-sm"
+                                            title="Activate">
+                                        <i class="bi bi-person-check"></i>
+                                    </button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

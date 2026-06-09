@@ -1,8 +1,4 @@
-﻿using HRSystem.DAL.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HRSystem.DAL.Models.Entities;
 
 namespace HRSystem.DAL.Configurations
 {
@@ -23,6 +19,9 @@ namespace HRSystem.DAL.Configurations
                 .WithMany(e => e.ManagedDepartments)
                 .HasForeignKey(d => d.ManagerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Global query filter for soft deletion
+            builder.HasQueryFilter(d => !d.IsDeleted);
         }
     }
 }

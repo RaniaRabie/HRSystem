@@ -1,0 +1,15 @@
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\bin\Debug\net10.0\HRSystem.DAL.deps.json
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\bin\Debug\net10.0\HRSystem.DAL.runtimeconfig.json
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\bin\Debug\net10.0\HRSystem.DAL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\bin\Debug\net10.0\HRSystem.DAL.pdb
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.csproj.AssemblyReference.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.AssemblyInfoInputs.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.AssemblyInfo.cs
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.csproj.CoreCompileInputs.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.sourcelink.json
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\refint\HRSystem.DAL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.pdb
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\HRSystem.DAL.genruntimeconfig.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.DAL\obj\Debug\net10.0\ref\HRSystem.DAL.dll

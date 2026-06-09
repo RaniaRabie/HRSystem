@@ -1,6 +1,4 @@
-﻿
-using HRSystem.DAL.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using HRSystem.DAL.Models.Entities;
 
 namespace HRSystem.DAL.Configurations
 {
@@ -11,13 +9,32 @@ namespace HRSystem.DAL.Configurations
             // configure the Primart Kay
             builder.HasKey(p => p.Id);
 
+            // configure the properties
+            builder.Property(p => p.BaseSalary)
+                .IsRequired()
+                .HasColumnType("decimal(18,2)");
+
+            builder.Property(p => p.Bonus)
+                .IsRequired()
+                .HasColumnType("decimal(18,2)");
+
+            builder.Property(p => p.Deductions)
+                .IsRequired()
+                .HasColumnType("decimal(18,2)");
+
+            builder.Property(p => p.NetSalary)
+                .IsRequired()
+                .HasColumnType("decimal(18,2)");
+
             // configure 
             builder.HasOne(p => p.Employee)
                 .WithMany(e => e.Payrolls)
                 .HasForeignKey(p => p.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+           
         }
 
-      
+
     }
 }

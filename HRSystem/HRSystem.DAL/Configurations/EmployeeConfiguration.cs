@@ -1,6 +1,4 @@
-﻿using HRSystem.DAL.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+﻿using HRSystem.DAL.Models.Entities;
 
 namespace HRSystem.DAL.Configurations
 {
@@ -17,16 +15,20 @@ namespace HRSystem.DAL.Configurations
             builder.Property(e => e.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
+
             builder.Property(e => e.LastName)
                 .IsRequired()
                 .HasMaxLength (50);
 
-            builder.Property(e => e.Email)
-                .IsRequired();
-
-            
             builder.Property(e => e.Salary)
                 .HasColumnType("decimal(18,2)");
+
+
+            // Configure the relationship with HRSystemUser
+            builder.HasOne(e => e.User)
+                .WithOne(u => u.Employee)
+                .HasForeignKey<Employee>(e => e.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Configure the relationship with Position
             builder.HasOne(e => e.Position)
@@ -40,7 +42,8 @@ namespace HRSystem.DAL.Configurations
                 .HasForeignKey(e => e.SupervisorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            
+            // Global query filter to exclude soft-deleted employees
+            builder.HasQueryFilter(e => !e.IsDeleted);
         }
     }
 }

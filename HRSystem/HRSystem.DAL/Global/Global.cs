@@ -1,2 +1,9 @@
 ﻿global using Microsoft.EntityFrameworkCore;
-
+global using HRSystem.DAL.Enums;
+global using HRSystem.DAL.Models.Entities;
+global using HRSystem.DAL.Context;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using HRSystem.DAL.Repository.Abstraction;
+global using HRSystem.DAL.Repository.Implementation;
+global using System.Linq.Expressions;

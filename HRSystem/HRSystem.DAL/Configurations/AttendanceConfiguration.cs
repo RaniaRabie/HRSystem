@@ -1,6 +1,4 @@
-﻿
-using HRSystem.DAL.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using HRSystem.DAL.Models.Entities;
 
 namespace HRSystem.DAL.Configurations
 {
@@ -16,6 +14,8 @@ namespace HRSystem.DAL.Configurations
            .WithMany(e => e.Attendances)
            .HasForeignKey(a => a.EmployeeId)
            .OnDelete(DeleteBehavior.Cascade);
+
+            
         }
     }
 }

@@ -1,0 +1,64 @@
+﻿@model HRSystem.BLL.ModelVM.Position.PositionFormVM
+
+@{
+    bool isEdit = Model.Id != null;
+    ViewData["Title"] = isEdit ? "Edit Position" : "Create Position";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-white border-0 py-3 px-4">
+                <h6 class="mb-0 fw-semibold">@ViewData["Title"]</h6>
+            </div>
+
+            <div class="card-body px-4 pb-4">
+                <form asp-action="@(isEdit ? "Edit" : "Create")" method="post">
+                    @Html.AntiForgeryToken()
+
+                    @if (isEdit)
+                    {
+                        <input type="hidden" asp-for="Id" />
+                    }
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger py-2 small mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Position Title</label>
+                        <input asp-for="Name" class="form-control"
+                               placeholder="e.g. Backend Developer" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="DepartmentId" class="form-label">Department</label>
+                        <select asp-for="DepartmentId" class="form-select">
+                            <option value="">— Select Department —</option>
+                            @foreach (var dept in ViewBag.Departments)
+                            {
+                                <option value="@dept.Id">@dept.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="DepartmentId"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-lg me-1"></i>
+                            @(isEdit ? "Save Changes" : "Create Position")
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

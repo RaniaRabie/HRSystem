@@ -1,0 +1,121 @@
+﻿@model HRSystem.BLL.ModelVM.Dashboard.DashboardVM
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@* ── Admin & HR Section ── *@
+@if (User.IsInRole("Admin") || User.IsInRole("HR"))
+{
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold">@Model.TotalEmployees</div>
+                <div class="text-muted">Total Employees</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold">@Model.TotalDepartments</div>
+                <div class="text-muted">Departments</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold">@Model.TotalPositions</div>
+                <div class="text-muted">Positions</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <div class="fs-2 fw-bold">@Model.ActiveUsers</div>
+                <div class="text-muted">Active Users</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Recent Employees</span>
+            <a asp-controller="Employee" asp-action="Index"
+               class="btn btn-sm btn-primary">View All</a>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model.RecentEmployees)
+                    {
+                        <tr>
+                            <td>@emp.FullName</td>
+                            <td>@emp.Email</td>
+                            <td>@emp.PositionName</td>
+                            <td>@emp.DepartmentName</td>
+                            <td>
+                                @if (emp.IsActive)
+                                {
+                                    <span class="badge bg-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Inactive</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@* ── Employee Section ── *@
+@if (User.IsInRole("Employee") && Model.MyProfile != null)
+{
+    <div class="card p-4">
+        <h5 class="mb-4">My Profile</h5>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="text-muted small">Full Name</div>
+                <div class="fw-semibold">@Model.MyProfile.FullName</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="text-muted small">Email</div>
+                <div class="fw-semibold">@Model.MyProfile.Email</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="text-muted small">Position</div>
+                <div class="fw-semibold">@Model.MyProfile.PositionName</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="text-muted small">Department</div>
+                <div class="fw-semibold">@Model.MyProfile.DepartmentName</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="text-muted small">Supervisor</div>
+                <div class="fw-semibold">
+                    @(Model.MyProfile.SupervisorName ?? "—")
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="text-muted small">Hire Date</div>
+                <div class="fw-semibold">
+                    @Model.MyProfile.HireDate.ToString("dd MMM yyyy")
+                </div>
+            </div>
+        </div>
+    </div>
+}

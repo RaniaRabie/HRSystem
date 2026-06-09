@@ -10,14 +10,9 @@
     <ProjectReference Include="..\HRSystem.DAL\HRSystem.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ModelVM\" />
-    <Folder Include="Hepler\" />
-    <Folder Include="Mapper\" />
-    <Folder Include="Localization\" />
-    <Folder Include="Globalization\" />
-    <Folder Include="Services\Abstraction\" />
-    <Folder Include="Services\Implementation\" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="16.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.6" />
+	</ItemGroup>
 
 </Project>

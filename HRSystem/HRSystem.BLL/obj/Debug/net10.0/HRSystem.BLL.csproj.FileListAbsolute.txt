@@ -1,0 +1,16 @@
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\bin\Debug\net10.0\HRSystem.BLL.deps.json
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\bin\Debug\net10.0\HRSystem.BLL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\bin\Debug\net10.0\HRSystem.BLL.pdb
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\bin\Debug\net10.0\HRSystem.DAL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\bin\Debug\net10.0\HRSystem.DAL.pdb
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.csproj.AssemblyReference.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.AssemblyInfoInputs.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.AssemblyInfo.cs
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.csproj.CoreCompileInputs.cache
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.sourcelink.json
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.D7BA94CA.Up2Date
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\refint\HRSystem.BLL.dll
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\HRSystem.BLL.pdb
+E:\.Net ITI Training\Backend\MVC\MVC_Project\HRSystem\HRSystem.BLL\obj\Debug\net10.0\ref\HRSystem.BLL.dll
